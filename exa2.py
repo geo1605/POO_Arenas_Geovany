@@ -30,4 +30,4 @@ while i > 0:
         result = cRect(a,b)
         print(result)
     else:
-        i = 0
+        i = -1
