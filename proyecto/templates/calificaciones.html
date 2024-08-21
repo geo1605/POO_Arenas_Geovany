@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calificaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Calificaciones</h1>
+        <form method="post" action="/agregar_calificacion" class="mb-3">
+            <div class="mb-3">
+                <input type="number" class="form-control" name="estudiante_id" placeholder="ID del Estudiante" required>
+            </div>
+            <div class="mb-3">
+                <input type="number" class="form-control" name="curso_id" placeholder="ID del Curso" required>
+            </div>
+            <div class="mb-3">
+                <input type="number" step="0.01" class="form-control" name="calificacion" placeholder="Calificación" required>
+            </div>
+            <div class="mb-3">
+                <input type="date" class="form-control" name="fecha" placeholder="Fecha" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Calificación</button>
+            <a href="/" class="btn btn-primary" style="text-decoration: none;">Volver al inicio</a>
+        </form>
+
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ID del Estudiante</th>
+                    <th>ID del Curso</th>
+                    <th>Calificación</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for calificacion in calificaciones %}
+                <tr>
+                    <td>{{ calificacion[0] }}</td>
+                    <td>{{ calificacion[1] }}</td>
+                    <td>{{ calificacion[2] }}</td>
+                    <td>{{ calificacion[3] }}</td>
+                    <td>{{ calificacion[4] }}</td>
+                    <td>
+                        <a href="/editar_calificacion/{{ calificacion[0] }}" class="btn btn-primary btn-sm">Editar</a>
+                        <form method="post" action="/eliminar_calificacion/{{ calificacion[0] }}" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
